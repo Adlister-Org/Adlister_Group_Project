@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: sarsi
+  Date: 11/16/20
+  Time: 12:15 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -10,15 +17,13 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
-
-    <c:forEach var="ad" items="${ads}">
+    <h1>One Ad</h1>
         <div class="col-md-6">
-            <a href="/ad"><c:out value="${ad.title}"/></a>
+            <h1><c:out value="${ad.title}"/></h1>
             <p><c:out value="${ad.description}"/></p>
         </div>
-    </c:forEach>
 </div>
 
 </body>
 </html>
+
