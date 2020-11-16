@@ -72,15 +72,16 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
-//    public Ad ad List<Ad> all() {
-//        PreparedStatement stmt = null;
-//        try {
-//            stmt = connection.prepareStatement("SELECT * FROM ads");
-//            ResultSet rs = stmt.executeQuery();
-//            return createAdsFromResults(rs);
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error retrieving all ads.", e);
-//        }
-//    }
+    @Override
+    public List<Ad> oneById(int id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = " + id, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
 
 }

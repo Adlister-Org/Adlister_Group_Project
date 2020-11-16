@@ -27,6 +27,13 @@ public class ListAdsDao implements Ads {
         return ad.getId();
     }
 
+    public List<Ad> oneById(int num) {
+        if (ads == null) {
+            ads = generateAds();
+        }
+        return ads;
+    }
+
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         ads.add(new Ad(
