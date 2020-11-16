@@ -17,8 +17,8 @@
         <div class="col-md-6">
             <a href="<c:url value="/ad">
             <c:param name="id" value="${ad.id}"/>
-        </c:url>"
-<%--            <a href="/ad" name="id" id="id" value="${ad.id}" ><c:out value="${ad.title}"/></a>--%>
+            </c:url>">
+            <c:out value = "${ad.title}"/></a>
             <p><c:out value="${ad.description}"/></p>
         </div>
     </c:forEach>

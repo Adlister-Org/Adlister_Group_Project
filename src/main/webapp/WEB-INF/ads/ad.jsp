@@ -17,7 +17,6 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>One Ad</h1>
         <div class="col-md-6">
             <h1><c:out value="${ad.title}"/></h1>
             <p><c:out value="${ad.description}"/></p>
