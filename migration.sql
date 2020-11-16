@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS adlister_db;
+
 USE adlister_db;
 
 DROP TABLE IF EXISTS ads;
@@ -21,3 +23,10 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
+<<<<<<< HEAD
+=======
+select * from users;
+select * from ads;
+
+
+>>>>>>> e9f554705bac4b78a68f2f25b9d02255f2125829
