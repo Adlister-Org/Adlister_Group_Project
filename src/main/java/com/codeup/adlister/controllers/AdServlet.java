@@ -12,7 +12,14 @@ import java.io.IOException;
 @WebServlet(name = "AdServlet", urlPatterns = "/ad")
 public class AdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("ad", DaoFactory.getAdsDao().oneById(1));
+//        int id = (int) request.getAttribute("id");
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("ad", DaoFactory.getAdsDao().oneById(id));
         request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);
     }
+
+
+
+
+
 }

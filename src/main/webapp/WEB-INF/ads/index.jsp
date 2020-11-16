@@ -1,3 +1,4 @@
+<%@ page import="com.codeup.adlister.models.Ad" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -14,7 +15,10 @@
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-            <a href="/ad"><c:out value="${ad.title}"/></a>
+            <a href="<c:url value="/ad">
+            <c:param name="id" value="${ad.id}"/>
+        </c:url>"
+<%--            <a href="/ad" name="id" id="id" value="${ad.id}" ><c:out value="${ad.title}"/></a>--%>
             <p><c:out value="${ad.description}"/></p>
         </div>
     </c:forEach>
