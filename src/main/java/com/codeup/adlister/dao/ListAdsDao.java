@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ListAdsDao implements Ads {
     private List<Ad> ads;
+    private Ad ad;
 
     public List<Ad> all() {
         if (ads == null) {
@@ -27,11 +28,20 @@ public class ListAdsDao implements Ads {
         return ad.getId();
     }
 
-    public List<Ad> oneById(int num) {
-        if (ads == null) {
-            ads = generateAds();
+    public Ad oneById(int num) {
+        if (ad == null) {
+            ad = generateAd();
         }
-        return ads;
+        return ad;
+    }
+
+    private Ad generateAd(){
+        return new Ad(
+                1,
+                1,
+                "playstation for sale",
+                "This is a slightly used playstation"
+        );
     }
 
     private List<Ad> generateAds() {
