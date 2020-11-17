@@ -12,6 +12,8 @@
 <div class="container">
     <h1><c:out value="Welcome, ${sessionScope.user.username}!"/></h1>
 
+<%--TODO: add method to MYSQLDAO that returns a list of ads by a specfic user id --%>
+
     <c:forEach var="ad" items="${ads}">
 
         <c:if test="${sessionScope.user.id.equals(ad.userId)}">
