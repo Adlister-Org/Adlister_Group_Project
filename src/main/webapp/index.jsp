@@ -3,14 +3,21 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Welcome to my site!" />
+        <jsp:param name="title" value="Welcome to my site!"/>
     </jsp:include>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
-        <h1>Welcome to the Adlister!</h1>
+<c:choose>
+    <c:when test="${sessionScope.user.username == null} ">
+        <jsp:include page="/WEB-INF/partials/loggedOutNav.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="/WEB-INF/partials/loggedInNav.jsp"/>
+    </c:otherwise>
+</c:choose>
+<div class="container">
+    <h1>Welcome to the Adlister!</h1>
 
-    </div>
+</div>
 </body>
 </html>

@@ -8,7 +8,14 @@
     </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<c:choose>
+    <c:when test="${sessionScope.user.username == null} ">
+        <jsp:include page="/WEB-INF/partials/loggedOutNav.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="/WEB-INF/partials/loggedInNav.jsp"/>
+    </c:otherwise>
+</c:choose>
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
@@ -20,13 +27,11 @@
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-
             <a href="<c:url value="/ad">
             <c:param name="id" value="${ad.id}"/>
             </c:url>">
             <c:out value = "${ad.title}"/></a>
             <p><c:out value="${ad.description}"/></p>
-
         </div>
     </c:forEach>
 </div>
