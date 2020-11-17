@@ -3,19 +3,30 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Your Profile" />
+        <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
-    <div class="container">
-<<<<<<< HEAD
-        <h1><c:out value=" Welcome, ${sessionScope.user.username}!" /></h1>
-=======
-        <h1> <c:out value="Welcome, ${sessionScope.user.username}!"/></h1>
->>>>>>> e9f554705bac4b78a68f2f25b9d02255f2125829
-    </div>
+<div class="container">
+    <h1><c:out value="Welcome, ${sessionScope.user.username}!"/></h1>
+
+    <c:forEach var="ad" items="${ads}">
+
+        <c:if test="${sessionScope.user.id.equals(ad.userId)}">
+        <div class="col-md-6">
+            <a href="<c:url value="/ad">
+            <c:param name="id" value="${ad.id}"/>
+                </c:url>">
+                <c:out value="${ad.title}"/></a>
+            <p><c:out value="${ad.description}"/></p>
+        </div>
+    </c:if>
+    </c:forEach>
+
+
+</div>
 
 </body>
 </html>

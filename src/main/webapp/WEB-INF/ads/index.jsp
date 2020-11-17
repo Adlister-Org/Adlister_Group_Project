@@ -15,16 +15,13 @@
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-<<<<<<< HEAD
-            <h2><c:out value="${ad.title}"/></h2>
-            <p><c:out value="${ad.description}" /></p>
-=======
+
             <a href="<c:url value="/ad">
             <c:param name="id" value="${ad.id}"/>
             </c:url>">
             <c:out value = "${ad.title}"/></a>
             <p><c:out value="${ad.description}"/></p>
->>>>>>> e9f554705bac4b78a68f2f25b9d02255f2125829
+
         </div>
     </c:forEach>
 </div>
