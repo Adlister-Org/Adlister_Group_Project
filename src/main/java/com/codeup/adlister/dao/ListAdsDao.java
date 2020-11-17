@@ -35,6 +35,11 @@ public class ListAdsDao implements Ads {
         return ad;
     }
 
+    @Override
+    public List<Ad> getByUserId(int id) {
+        return null;
+    }
+
     private Ad generateAd(){
         return new Ad(
                 1,

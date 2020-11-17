@@ -87,4 +87,10 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public  List<Ad> getByUserId(int id){
+        return null;
+    }
+
+
 }

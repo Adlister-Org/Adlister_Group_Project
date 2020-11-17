@@ -15,7 +15,6 @@
 <%--TODO: add method to MYSQLDAO that returns a list of ads by a specfic user id --%>
 
     <c:forEach var="ad" items="${ads}">
-
         <c:if test="${sessionScope.user.id.equals(ad.userId)}">
         <div class="col-md-6">
             <a href="<c:url value="/ad">
@@ -27,8 +26,6 @@
     </c:if>
     </c:forEach>
 
-
 </div>
-
 </body>
 </html>
