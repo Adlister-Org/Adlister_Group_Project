@@ -12,18 +12,18 @@
 <div class="container">
     <h1><c:out value="Welcome, ${sessionScope.user.username}!"/></h1>
 
-<%--TODO: add method to MYSQLDAO that returns a list of ads by a specfic user id --%>
+    <%--TODO: add method to MYSQLDAO that returns a list of ads by a specfic user id --%>
 
     <c:forEach var="ad" items="${ads}">
         <c:if test="${sessionScope.user.id.equals(ad.userId)}">
-        <div class="col-md-6">
-            <a href="<c:url value="/ad">
+            <div class="col-md-6">
+                <a href="<c:url value="/ad">
             <c:param name="id" value="${ad.id}"/>
                 </c:url>">
-                <c:out value="${ad.title}"/></a>
-            <p><c:out value="${ad.description}"/></p>
-        </div>
-    </c:if>
+                    <c:out value="${ad.title}"/></a>
+                <p><c:out value="${ad.description}"/></p>
+            </div>
+        </c:if>
     </c:forEach>
 
 </div>
