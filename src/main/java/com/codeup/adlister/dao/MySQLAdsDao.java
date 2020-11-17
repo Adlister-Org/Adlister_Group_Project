@@ -86,8 +86,11 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
     @Override
-    public  List<Ad> getByUserId();
+    public  List<Ad> getByUserId(int id){
+        return null;
+    }
 
 
 }
