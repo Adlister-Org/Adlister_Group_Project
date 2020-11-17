@@ -14,14 +14,7 @@
     </jsp:include>
 </head>
 <body>
-<c:choose>
-    <c:when test="${sessionScope.user.username == null} ">
-        <jsp:include page="/WEB-INF/partials/loggedOutNav.jsp"/>
-    </c:when>
-    <c:otherwise>
-        <jsp:include page="/WEB-INF/partials/loggedInNav.jsp"/>
-    </c:otherwise>
-</c:choose>
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="container">
         <div class="col-md-6">

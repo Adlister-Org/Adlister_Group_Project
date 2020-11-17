@@ -7,17 +7,10 @@
     </jsp:include>
 </head>
 <body>
-<c:choose>
-    <c:when test="${sessionScope.user != null} ">
-        <jsp:include page="WEB-INF/partials/loggedInNav.jsp"/>
-    </c:when>
-    <c:otherwise>
-        <jsp:include page="WEB-INF/partials/loggedOutNav.jsp"/>
-    </c:otherwise>
-</c:choose>
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+
 <div class="container">
     <h1>Welcome to the Adlister!</h1>
-
 </div>
 </body>
 </html>
