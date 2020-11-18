@@ -22,7 +22,9 @@
             <p><c:out value="${ad.description}"/></p>
         </div>
 </div>
+<script>
 
+</script>
 </body>
 </html>
 
