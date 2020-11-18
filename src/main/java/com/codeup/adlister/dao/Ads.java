@@ -16,5 +16,8 @@ public interface Ads {
 
     List<Ad> getByUserId(int id);
 
+    void updateAd(Ad ad);
+
+
 
 }

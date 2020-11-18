@@ -3,9 +3,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +89,7 @@ public class MySQLAdsDao implements Ads {
         return null;
     }
 
+    // SEARCH AD
     @Override
     public List<Ad> all(String param) {
         PreparedStatement stmt = null;
@@ -104,6 +102,19 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-
-
+    // UPDATE AD
+    @Override
+    public void updateAd(Ad ad) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("UPDATE ads SET title = " + ad.getTitle() + ", description = " + ad.getDescription() + " WHERE id = " + ad.getId());
+//            stmt.setString(1, ad.getTitle());
+//            stmt.setString(2, ad.getDescription());
+//            stmt.setLong(3, ad.getId());
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error editing ad.", e);
+        }
+        //return ad;
+    }
 }
