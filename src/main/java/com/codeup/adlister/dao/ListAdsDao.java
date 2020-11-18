@@ -48,7 +48,7 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
-    public void updateAd(Ad ad) {
+    public void updateAd(String title, String description, long adId) {
         if (ad == null) {
             ad = generateAd();
         }

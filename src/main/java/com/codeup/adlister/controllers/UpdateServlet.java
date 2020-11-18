@@ -22,11 +22,20 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        String adId = request.getParameter("adId");
+        long adId = Long.parseLong(request.getParameter("adId"));
 
-        Ad ad = new Ad (Long.parseLong(adId), title, description);
-        DaoFactory.getAdsDao().updateAd(ad);
+        boolean inputHasErrors = title.isEmpty()
+                || description.isEmpty()
+                || description.length() > 255
+                || title.length() > 50;
 
-        //response.sendRedirect("/ad");
+        if (inputHasErrors) {
+            //request.setAttribute("redirect", redirect);
+            response.sendRedirect("/profile");
+            return;
+        }
+
+        DaoFactory.getAdsDao().updateAd(title, description, adId);
+        response.sendRedirect("/profile");
     }
 }
