@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AdServlet", urlPatterns = "/ad")
-public class AdServlet extends HttpServlet {
+@WebServlet(name = "UpdateServlet", urlPatterns = "/update")
+public class UpdateServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("ad", DaoFactory.getAdsDao().oneById(id));
-        request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ads/update_ad.jsp").forward(request, response);
     }
-
 }

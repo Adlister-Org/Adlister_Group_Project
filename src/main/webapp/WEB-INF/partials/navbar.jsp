@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<nav class="navbar navbar-default">--%>
+<nav class="navbar navbar-default">
 <%--<c:choose>--%>
 <%--    <c:when test="${sessionScope.user == null}">--%>
 <%--        <div class="container-fluid">--%>
@@ -35,10 +35,13 @@
 <%--        </div>--%>
 <%--        <!-- /.navbar-collapse -->--%>
 <%--        </div><!-- /.container-fluid -->--%>
-<%--        --%>
+
 <%--    </c:otherwise>--%>
 <%--</c:choose>--%>
 <%--</nav>--%>
+
+
+
 <c:choose>
     <c:when test="${sessionScope.user == null}">
         <div class="container-fluid">

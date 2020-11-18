@@ -22,6 +22,11 @@
                 </c:url>">
                     <c:out value="${ad.title}"/></a>
                 <p><c:out value="${ad.description}"/></p>
+
+                <button type="button" name="update" action="update"><a href="<c:url value="/update">
+                    <c:param name="id" value="${ad.id}"/>
+                        </c:url>"> Update</a></button>
+                <button type="button" name="delete" action="delete"><a href="/delete">Delete</a></button>
             </div>
         </c:if>
     </c:forEach>
