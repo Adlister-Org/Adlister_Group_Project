@@ -47,6 +47,13 @@ public class ListAdsDao implements Ads {
         return null;
     }
 
+    @Override
+    public void updateAd(Ad ad) {
+        if (ad == null) {
+            ad = generateAd();
+        }
+    }
+
     private Ad generateAd(){
         return new Ad(
                 1,

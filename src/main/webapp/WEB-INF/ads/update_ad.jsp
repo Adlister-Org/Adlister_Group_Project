@@ -19,11 +19,15 @@
 <div class="container">
     <div class="col-md-6">
         <form method="post" action="/update">
+
             <label for="title">Title</label>
             <input id="title" name="title" value="<c:out value="${ad.title}"/>">
             <label for="description">Description</label>
             <textarea id="description" name="description"><c:out value="${ad.description}"/></textarea>
+
             <button type="submit">Submit</button>
+            <input id="adId" name="adId" value="<c:out value="${ad.id}"/>"/>
+
         </form>
     </div>
 </div>

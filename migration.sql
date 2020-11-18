@@ -23,10 +23,9 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
-<<<<<<< HEAD
-=======
+
 select * from users;
 select * from ads;
 
+UPDATE ads SET title = 'edit-sdfdfs', description = 'edit-fkjgbkfj' WHERE id = 4;
 
->>>>>>> e9f554705bac4b78a68f2f25b9d02255f2125829
