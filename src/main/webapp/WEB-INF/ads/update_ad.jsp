@@ -22,7 +22,7 @@
             <label for="title">Title</label>
             <input id="title" name="title" value="<c:out value="${ad.title}"/>">
             <label for="description">Description</label>
-            <input id="description" name="decription" value="<c:out value="${ad.description}"/>">
+            <textarea id="description" name="description"><c:out value="${ad.description}"/></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>
