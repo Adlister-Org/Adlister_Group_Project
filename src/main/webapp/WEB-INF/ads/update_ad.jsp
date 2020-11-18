@@ -26,7 +26,9 @@
             <textarea id="description" name="description"><c:out value="${ad.description}"/></textarea>
 
             <button type="submit">Submit</button>
-            <input id="adId" name="adId" value="<c:out value="${ad.id}"/>"/>
+
+<%--            Right now, if you inspect this in chrome, it is visible, open to attacks--%>
+            <input type="hidden" id="adId" name="adId" value="<c:out value="${ad.id}"/>"/>
 
         </form>
     </div>
