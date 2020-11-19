@@ -22,10 +22,12 @@
 
             <label for="email">Email</label>
             <input id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>">
-            <label for="password">New Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter new password"></input>
+            <button type="submit" value="${sessionScope.user.id}" name="userId">Submit</button>
 
-            <button type="submit" value="${sessionScope.user.id}" name="adId">Submit</button>
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter new password">
+            <button type="submit" value="${sessionScope.user.id}" name="password">Submit</button>
+
         </form>
     </div>
 </div>
