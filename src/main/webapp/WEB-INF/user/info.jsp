@@ -21,12 +21,15 @@
         <form method="post" action="/info">
 
             <label for="email">Email</label>
-            <input id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>">
-            <button type="submit" value="${sessionScope.user.id}" name="userId">Submit</button>
+            <input type="email" id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>">
+<%--            <button type="submit" value="${sessionScope.user.id}" name="userId">Submit</button>--%>
 
             <label for="password">New Password</label>
             <input type="password" id="password" name="password" placeholder="Enter new password">
-            <button type="submit" value="${sessionScope.user.id}" name="password">Submit</button>
+            <button type="submit" value="${sessionScope.user.id}" name="userId">Submit</button>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="re-enter new password">
 
         </form>
     </div>

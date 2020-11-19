@@ -84,6 +84,7 @@ public class MySQLUsersDao implements Users {
             PreparedStatement stmt = connection.prepareStatement( "UPDATE users SET password = ? WHERE id = ?");
             stmt.setString(1, Password.hash(password));
             stmt.setLong(2, id);
+            stmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException("Error editing Password.", e);
         }
