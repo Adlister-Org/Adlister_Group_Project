@@ -1,7 +1,9 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 import com.mysql.cj.jdbc.Driver;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 
@@ -63,12 +65,25 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-    @Override
-    public void updateUser(User user) throws SQLException {
+
+    public void updateUserEmail(String email, long id) throws SQLException {
         try {
-            PreparedStatement stmt = connection.prepareStatement( "UPDATE users SET email = ?, password = ? WHERE id = ?");
-            stmt.setString(1, user.getEmail());
-            stmt.setLong(2, user.getId());
+            PreparedStatement stmt = connection.prepareStatement( "UPDATE users SET email = ? WHERE id = ?");
+            stmt.setString(1, email);
+            stmt.setLong(2, id);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error editing email.", e);
+        }
+
+    }
+
+    public void updateUserPassword(String password, long id) throws SQLException {
+        try {
+            PreparedStatement stmt = connection.prepareStatement( "UPDATE users SET password = ? WHERE id = ?");
+            stmt.setString(1, Password.hash(password));
+            stmt.setLong(2, id);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error editing Password.", e);
         }
 
     }
