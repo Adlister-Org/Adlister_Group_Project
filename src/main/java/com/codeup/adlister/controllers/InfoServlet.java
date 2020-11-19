@@ -13,21 +13,18 @@ import java.io.IOException;
 @WebServlet(name = "InfoServlet", urlPatterns = "/info")
 public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        User sessionUser = (User) request.getSession().getAttribute("user");
-//        request.setAttribute("user1", DaoFactory.getUsersDao().findByUsername(((User) request.getSession().getAttribute("user")).getUsername()));
         request.getRequestDispatcher("/WEB-INF/user/info.jsp").forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getSession().getAttribute("user");
+
         long userID = Long.parseLong(request.getParameter("userId"));
         String updateEmail = request.getParameter("email");
-//        User user = (User) request.getSession().getAttribute("user");
-//        request.setAttribute("userId", DaoFactory.getUsersDao().findByUsername(user.getUsername()).getId());
+
 
         DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
-
-        response.sendRedirect("/info");
+        response.sendRedirect("/logout");
     }
 
 
