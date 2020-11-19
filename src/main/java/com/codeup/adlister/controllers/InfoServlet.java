@@ -19,7 +19,15 @@ public class InfoServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        request.getSession().getAttribute("user");
+        long userID = Long.parseLong(request.getParameter("userId"));
+        String updateEmail = request.getParameter("email");
+//        User user = (User) request.getSession().getAttribute("user");
+//        request.setAttribute("userId", DaoFactory.getUsersDao().findByUsername(user.getUsername()).getId());
 
+        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+
+        response.sendRedirect("/info");
     }
 
 

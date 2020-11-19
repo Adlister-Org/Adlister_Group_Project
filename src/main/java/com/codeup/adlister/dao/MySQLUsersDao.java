@@ -65,19 +65,21 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-
-    public void updateUserEmail(String email, long id) throws SQLException {
+    @Override
+    public void updateUserEmail(String email, long id) {
         try {
             PreparedStatement stmt = connection.prepareStatement( "UPDATE users SET email = ? WHERE id = ?");
             stmt.setString(1, email);
             stmt.setLong(2, id);
+            stmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException("Error editing email.", e);
         }
 
     }
 
-    public void updateUserPassword(String password, long id) throws SQLException {
+    @Override
+    public void updateUserPassword(String password, long id) {
         try {
             PreparedStatement stmt = connection.prepareStatement( "UPDATE users SET password = ? WHERE id = ?");
             stmt.setString(1, Password.hash(password));

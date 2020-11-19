@@ -25,7 +25,7 @@
             <label for="password">New Password</label>
             <input type="password" id="password" name="password" placeholder="Enter new password"></input>
 
-            <button type="submit" value="${sessionScope.user.id}" name="adId">Submit</button>
+            <button type="submit" value="${sessionScope.user.id}" name="userId">Submit</button>
         </form>
     </div>
 </div>
