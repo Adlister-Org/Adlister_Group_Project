@@ -38,6 +38,6 @@ public class UpdateServlet extends HttpServlet {
         }
 
         DaoFactory.getAdsDao().updateAd(title, description, adId);
-        response.sendRedirect("/profile");
+        response.sendRedirect("ad?id=" + adId);
     }
 }
