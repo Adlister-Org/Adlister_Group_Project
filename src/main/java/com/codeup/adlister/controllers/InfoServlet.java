@@ -21,11 +21,27 @@ public class InfoServlet extends HttpServlet {
 
         long userID = Long.parseLong(request.getParameter("userId"));
         String updateEmail = request.getParameter("email");
+        String updatePassword = request.getParameter("password");
 
 
-        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+        boolean invalidPassword = updatePassword.isEmpty();
+        boolean invalidEmail = updateEmail.isEmpty();
+
+        if  (invalidEmail){
+            response.sendRedirect("/info");
+            return;
+        }
+
+        if (invalidPassword) {
+            DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+        } else {
+            DaoFactory.getUsersDao().updateUserPassword(updatePassword, userID);
+        }
         response.sendRedirect("/logout");
+
     }
+
+//    $2a$10$P64uBJT55Dm0BUIpp1WgluK7M54xKVLp5FHrxSmxTfA1uIxx48MlG
 
 
 }
