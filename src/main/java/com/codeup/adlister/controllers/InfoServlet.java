@@ -27,7 +27,7 @@ public class InfoServlet extends HttpServlet {
 
         boolean invalidPassword = !confirmPassword.equals(updatePassword);
         boolean emptyPassword = updatePassword.isEmpty();
-        boolean invalidEmail = updateEmail.isEmpty();
+        boolean invalidEmail = updateEmail.isEmpty() || !updateEmail.contains(".");
 
         if  (invalidEmail || invalidPassword){
             response.sendRedirect("/info");

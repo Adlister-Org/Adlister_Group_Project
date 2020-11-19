@@ -21,7 +21,7 @@
         <form method="post" action="/info">
 
             <label for="email">Email</label>
-            <input id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>">
+            <input type="email" id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>">
 <%--            <button type="submit" value="${sessionScope.user.id}" name="userId">Submit</button>--%>
 
             <label for="password">New Password</label>
