@@ -14,15 +14,18 @@ import java.io.IOException;
 public class UpdateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("adId"));
         request.setAttribute("ad", DaoFactory.getAdsDao().oneById(id));
         request.getRequestDispatcher("/WEB-INF/ads/update_ad.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long adId = Long.parseLong(request.getParameter("adId"));
+        request.setAttribute("adId", DaoFactory.getAdsDao().oneById((int)adId));
+
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        long adId = Long.parseLong(request.getParameter("adId"));
+
 
         boolean inputHasErrors = title.isEmpty()
                 || description.isEmpty()

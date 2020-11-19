@@ -23,10 +23,12 @@
                     <c:out value="${ad.title}"/></a>
                 <p><c:out value="${ad.description}"/></p>
 
-                <button type="button" name="update" action="update"><a href="<c:url value="/update">
-                    <c:param name="id" value="${ad.id}"/>
-                        </c:url>"> Update</a></button>
-                <button type="button" name="delete" action="delete"><a href="/delete">Delete</a></button>
+               <form action="/update" method="get">
+                   <button type="submit" value="${ad.id}" name="adId">Update</button>
+               </form>
+                <form action="/delete" method="post">
+                   <button type="submit" value="${ad.id}" name="adId">Delete</button>
+                </form>
             </div>
         </c:if>
     </c:forEach>
@@ -34,3 +36,7 @@
 </div>
 </body>
 </html>
+<%--<button type="button" name="update" action="update"><a href="<c:url value="/update">--%>
+<%--                    <c:param name="id" value="${ad.id}"/>--%>
+<%--                        </c:url>"> Update</a></button>--%>
+<%--<button type="button" name="delete" action="delete"><a href="/delete">Delete</a></button>--%>
