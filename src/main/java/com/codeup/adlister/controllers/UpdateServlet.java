@@ -26,7 +26,6 @@ public class UpdateServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
 
-
         boolean inputHasErrors = title.isEmpty()
                 || description.isEmpty()
                 || description.length() > 255

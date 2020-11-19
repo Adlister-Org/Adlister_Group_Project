@@ -63,7 +63,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <p><c:out value="Hello, ${sessionScope.user.username}!"/></p>
+                    <a href="/info"><c:out value="Hello, ${sessionScope.user.username}!"/></a>
                 </li>
                 <li>
                     <a href="/logout">Logout</a>

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: austinvarnon
-  Date: 11/18/20
-  Time: 9:41 AM
+  User: cruzanio
+  Date: 11/19/20
+  Time: 11:19 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,15 +18,14 @@
 
 <div class="container">
     <div class="col-md-6">
-        <form method="post" action="/update">
+        <form method="post" action="/info">
 
-            <label for="title">Title</label>
-            <input id="title" name="title" value="<c:out value="${ad.title}"/>">
-            <label for="description">Description</label>
-            <textarea id="description" name="description"><c:out value="${ad.description}"/></textarea>
+            <label for="email">Email</label>
+            <input id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>">
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter new password"></input>
 
-            <button type="submit" value="${ad.id}" name="adId">Submit</button>
-
+            <button type="submit" value="${sessionScope.user.id}" name="adId">Submit</button>
         </form>
     </div>
 </div>
