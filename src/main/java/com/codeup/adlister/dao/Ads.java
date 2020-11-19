@@ -18,6 +18,6 @@ public interface Ads {
 
     void updateAd(String title, String description, long adId);
 
-
+    void deleteAd(long id);
 
 }
