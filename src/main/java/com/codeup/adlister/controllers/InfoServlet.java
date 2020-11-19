@@ -22,20 +22,22 @@ public class InfoServlet extends HttpServlet {
         long userID = Long.parseLong(request.getParameter("userId"));
         String updateEmail = request.getParameter("email");
         String updatePassword = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirm-password");
 
 
-        boolean invalidPassword = updatePassword.isEmpty();
+        boolean invalidPassword = !confirmPassword.equals(updatePassword);
+        boolean emptyPassword = updatePassword.isEmpty();
         boolean invalidEmail = updateEmail.isEmpty();
 
-        if  (invalidEmail){
+        if  (invalidEmail || invalidPassword){
             response.sendRedirect("/info");
             return;
         }
 
-        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
-        if (!invalidPassword) {
+        if (!emptyPassword) {
             DaoFactory.getUsersDao().updateUserPassword(updatePassword, userID);
         }
+        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
         response.sendRedirect("/logout");
 
     }
