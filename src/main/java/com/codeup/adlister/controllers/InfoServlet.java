@@ -32,16 +32,16 @@ public class InfoServlet extends HttpServlet {
             return;
         }
 
-        if (invalidPassword) {
-            DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
-        } else {
+        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+        if (!invalidPassword) {
             DaoFactory.getUsersDao().updateUserPassword(updatePassword, userID);
         }
         response.sendRedirect("/logout");
 
     }
 
-//    $2a$10$P64uBJT55Dm0BUIpp1WgluK7M54xKVLp5FHrxSmxTfA1uIxx48MlG
+//    $2a$10$veBYkS3kkyXAmsg3GjSjzuRdfLUZdaeA6so111lBcIYBP.KwrCp3W
+
 
 
 }
