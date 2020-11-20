@@ -19,7 +19,13 @@
             <label for="description">Description</label>
             <textarea id="description" name="description" class="form-control" type="text"></textarea>
         </div>
+        <c:forEach var="category" items="${categories}">
+            <label for="cat-title">${category.title}</label>
+            <input id="cat-title"  name="cat-title" type="checkbox" value="${category.id}"/>
+        </c:forEach>
+
         <input type="submit" class="btn btn-block btn-primary">
+
     </form>
 </div>
 </body>
