@@ -24,4 +24,5 @@ public interface Ads {
     public List<Category> allCategories();
 
 
+    void insertAdsCat(long id, long val_id);
 }

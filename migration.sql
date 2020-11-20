@@ -38,12 +38,20 @@ CREATE  TABLE ads_categories (
 );
 
 INSERT INTO categories(title) VALUES ('Cleaning');
+INSERT INTO categories(title) VALUES ('Plumbing');
+INSERT INTO categories(title) VALUES ('Handyman');
+INSERT INTO categories(title) VALUES ('IT');
 
 
 
 
 -- select * from users;
--- select * from ads;
+-- select * from categories where id = 4;
+-- select * from categories join ad_category on categories.id = ad_category
 
 -- UPDATE ads SET title = 'edit-sdfdfs', description = 'edit-fkjgbkfj' WHERE id = 4;
+
+show tables;
+
+desc ads;
 

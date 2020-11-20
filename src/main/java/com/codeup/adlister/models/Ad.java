@@ -9,8 +9,7 @@ public class Ad {
     private String description;
     private List<String> categories;
 
-    public Ad(long id, long userId, String title, String description, List<String> categories) {
-        this.id = id;
+    public Ad(long userId, String title, String description, List<String> categories) {
         this.userId = userId;
         this.title = title;
         this.description = description;
@@ -23,7 +22,7 @@ public class Ad {
         this.title = title;
         this.description = description;
     }
-
+    // CreateAdServlet
     public Ad(long userId, String title, String description) {
         this.userId = userId;
         this.title = title;

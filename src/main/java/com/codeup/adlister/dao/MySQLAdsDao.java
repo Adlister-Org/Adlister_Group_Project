@@ -47,7 +47,7 @@ public class MySQLAdsDao implements Ads {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            return rs.getLong(1);
+            return rs.getLong(1); // returns id
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
@@ -161,5 +161,17 @@ public class MySQLAdsDao implements Ads {
         );
     }
 
-
+    @Override
+    public void insertAdsCat(long id, long val_id){
+        try {
+            String insertQuery = "INSERT INTO ads_categories(ad_id, category_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, id);
+            stmt.setLong(2, val_id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error inserting into new ads category.", e);
+        }
+    }
 }
+
