@@ -1,3 +1,4 @@
+
 CREATE DATABASE IF NOT EXISTS adlister_db;
 
 USE adlister_db;
@@ -30,9 +31,13 @@ CREATE TABLE categories (
     PRIMARY KEY (id)
 );
 
+DROP TABLE categories;
+DROP TABLE ads_categories;
 CREATE  TABLE ads_categories (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     ad_id INT UNSIGNED NOT NULL,
     category_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (ad_id) REFERENCES ads(id),
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );

@@ -22,6 +22,17 @@
             <p><c:out value="${ad.description}"/></p>
         </div>
 </div>
+<div class="container">
+    <div class="col-md-6">
+        <ul>
+            <c:forEach var="cat" items="${categories}">
+                <li>
+                    ${cat.title}
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>
