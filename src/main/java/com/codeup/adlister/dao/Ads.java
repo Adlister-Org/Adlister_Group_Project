@@ -13,7 +13,7 @@ public interface Ads {
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
-    Ad oneById(int id);
+    Ad oneById(long id);
 
     List<Ad> getByUserId(int id);
 
@@ -23,6 +23,7 @@ public interface Ads {
 
     public List<Category> allCategories();
 
-
     void insertAdsCat(long id, long val_id);
+
+    List<Category> categoriesByAdId(long id);
 }
