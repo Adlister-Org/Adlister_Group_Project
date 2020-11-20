@@ -36,17 +36,20 @@ public class CreateAdServlet extends HttpServlet {
         List<String> list = Arrays.asList(catSelected);
         List<Long> aList = new ArrayList<>();
         for (String category_id : list) {
-                aList.add(Long.parseLong(category_id));
+            aList.add(Long.parseLong(category_id));
         }
 
         Ad ad = new Ad(
             sessionUser.getId(),
             request.getParameter("title"),
-            request.getParameter("description"),
-            list
+            request.getParameter("description")
         );
 
-        DaoFactory.getAdsDao().insert(ad);
+
+        long id = DaoFactory.getAdsDao().insert(ad);
+        for(long val_id : aList) {
+            DaoFactory.getAdsDao().insertAdsCat(id, val_id);
+        }
         response.sendRedirect("/ads");
     }
 }
