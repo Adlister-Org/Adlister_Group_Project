@@ -27,9 +27,7 @@ USE adlister_db;
 CREATE TABLE categories (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (ad_id) REFERENCES ads(id)
-        ON DELETE CASCADE
+    PRIMARY KEY (id)
 );
 
 CREATE  TABLE ads_categories (
@@ -39,10 +37,13 @@ CREATE  TABLE ads_categories (
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
+INSERT INTO categories(title) VALUES ('Cleaning');
 
 
-select * from users;
-select * from ads;
 
-UPDATE ads SET title = 'edit-sdfdfs', description = 'edit-fkjgbkfj' WHERE id = 4;
+
+-- select * from users;
+-- select * from ads;
+
+-- UPDATE ads SET title = 'edit-sdfdfs', description = 'edit-fkjgbkfj' WHERE id = 4;
 
