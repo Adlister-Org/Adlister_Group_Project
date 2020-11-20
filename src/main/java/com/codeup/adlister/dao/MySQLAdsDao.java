@@ -47,7 +47,7 @@ public class MySQLAdsDao implements Ads {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            return rs.getLong(1);
+            return rs.getLong(1); // returns id
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
@@ -71,7 +71,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public Ad oneById(int id) {
+    public Ad oneById(long id) {
         String query = String.format("SELECT * FROM ads WHERE id = %d", id);
         try {
             Statement stmt = connection.createStatement();
@@ -161,5 +161,34 @@ public class MySQLAdsDao implements Ads {
         );
     }
 
+    @Override
+    public void insertAdsCat(long id, long val_id){
+        try {
+            String insertQuery = "INSERT INTO ads_categories(ad_id, category_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, id);
+            stmt.setLong(2, val_id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error inserting into new ads category.", e);
+        }
+    }
+    @Override
+    public List<Category> categoriesByAdId(long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * " +
+                    "FROM categories " +
+                    "JOIN ads_categories ON categories.id = ads_categories.category_id " +
+                    "JOIN ads ON ads.id = ads_categories.ad_id "+
+                    "WHERE ads.id = ?"  );
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
 
+            return createCategoriesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads by search criteria.", e);
+        }
+    }
 }
+
