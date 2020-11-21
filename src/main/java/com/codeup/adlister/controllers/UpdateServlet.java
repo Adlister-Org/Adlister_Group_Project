@@ -24,7 +24,7 @@ public class UpdateServlet extends HttpServlet {
         List<Category> categories = DaoFactory.getAdsDao().allCategories();
         List<Category> selectedCategories = DaoFactory.getAdsDao().categoriesByAdId(id);
 
-        for(Category cat : categories) {
+        for (Category cat : categories) {
             for (Category selCat : selectedCategories) {
                 if (selCat.getId() == cat.getId()) {
                     cat.setChecked(1);
@@ -41,8 +41,8 @@ public class UpdateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long  adId= Long.parseLong(request.getParameter("adId"));
-        request.setAttribute("adId", DaoFactory.getAdsDao().oneById((int)adId));
+        long adId = Long.parseLong(request.getParameter("adId"));
+        request.setAttribute("adId", DaoFactory.getAdsDao().oneById((int) adId));
 
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -57,22 +57,14 @@ public class UpdateServlet extends HttpServlet {
             return;
         }
 
-        if (request.getParameterValues("cat-title") == null){
-            String[] catSelected = new String[1];
-            catSelected[0] = "5";
-
-            List<String> list = Arrays.asList(catSelected);
-
-            List<Long> aList = new ArrayList<>();
-            for (String category_id : list) {
-                aList.add(Long.parseLong(category_id));
+        if (request.getParameterValues("cat-title") == null) {
+            List<Category> other = DaoFactory.getAdsDao().categoryByName("Other");
+            long id = 0;
+            for (Category cat : other) {
+                id = cat.getId();
             }
-
             DaoFactory.getAdsDao().deleteAdsCat(adId);
-
-            for(long val_id : aList) {
-                DaoFactory.getAdsDao().insertAdsCat(adId, val_id);
-            }
+            DaoFactory.getAdsDao().insertAdsCat(adId, id);
 
         } else {
             String[] catSelected = request.getParameterValues("cat-title");
@@ -85,12 +77,10 @@ public class UpdateServlet extends HttpServlet {
 
             DaoFactory.getAdsDao().deleteAdsCat(adId);
 
-            for(long val_id : aList) {
+            for (long val_id : aList) {
                 DaoFactory.getAdsDao().insertAdsCat(adId, val_id);
             }
         }
-
-
 
         DaoFactory.getAdsDao().updateAd(title, description, adId);
         response.sendRedirect("ad?id=" + adId);
