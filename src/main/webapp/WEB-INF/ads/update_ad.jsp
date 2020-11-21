@@ -10,7 +10,7 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The Ads" />
+        <jsp:param name="title" value="Viewing All The Ads"/>
     </jsp:include>
 </head>
 <body>
@@ -24,10 +24,26 @@
             <input id="title" name="title" value="<c:out value="${ad.title}"/>">
             <label for="description">Description</label>
             <textarea id="description" name="description"><c:out value="${ad.description}"/></textarea>
-            <c:forEach var="category" items="${categories}">
-                <label for="cat-title">${category.title}</label>
-                <input id="cat-title"  name="cat-title" type="checkbox" value="${category.id}"/>
-            </c:forEach>
+            <ul>
+                <c:forEach var="category" items="${categories}">
+                    <c:choose>
+                        <c:when test="${category.checked == 1}">
+                            <li>
+                                <label for="cat-title">${category.title}</label>
+                                <input id="cat-title" name="cat-title" type="checkbox" value="${category.id}" checked/>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <label for="cat-title">${category.title}</label>
+                                <input id="cat-title" name="cat-title" type="checkbox" value="${category.id}"/>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </ul>
+
+
             <button type="submit" value="${ad.id}" name="adId">Submit</button>
 
         </form>

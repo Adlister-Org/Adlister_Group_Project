@@ -1,4 +1,4 @@
-
+DROP DATABASE  IF EXISTS adlister_db;
 CREATE DATABASE IF NOT EXISTS adlister_db;
 
 USE adlister_db;
@@ -45,7 +45,6 @@ CREATE  TABLE ads_categories (
 DELETE FROM ads_categories WHERE ad_id = 16;
 
 INSERT INTO categories(title) VALUES ('Other');
-
 INSERT INTO categories(title) VALUES ('Cleaning');
 INSERT INTO categories(title) VALUES ('Plumbing');
 INSERT INTO categories(title) VALUES ('Handyman');

@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 @WebServlet(name = "UpdateServlet", urlPatterns = "/update")
@@ -19,9 +21,23 @@ public class UpdateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("adId"));
-        request.setAttribute("categories", DaoFactory.getAdsDao().allCategories());
+        List<Category> categories = DaoFactory.getAdsDao().allCategories();
+        List<Category> selectedCategories = DaoFactory.getAdsDao().categoriesByAdId(id);
+
+        for(Category cat : categories) {
+            for (Category selCat : selectedCategories) {
+                if (selCat.getId() == cat.getId()) {
+                    cat.setChecked(1);
+                }
+            }
+        }
+
+        request.setAttribute("categories", categories);
         request.setAttribute("ad", DaoFactory.getAdsDao().oneById(id));
+        request.setAttribute("current_cat", selectedCategories);
+
         request.getRequestDispatcher("/WEB-INF/ads/update_ad.jsp").forward(request, response);
+        request.removeAttribute("current_cat");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,6 +60,7 @@ public class UpdateServlet extends HttpServlet {
         if (request.getParameterValues("cat-title") == null){
             String[] catSelected = new String[1];
             catSelected[0] = "5";
+
             List<String> list = Arrays.asList(catSelected);
 
             List<Long> aList = new ArrayList<>();
