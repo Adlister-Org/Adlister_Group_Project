@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "InfoServlet", urlPatterns = "/info")
 public class InfoServlet extends HttpServlet {
@@ -25,19 +26,52 @@ public class InfoServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirm-password");
 
 
-        boolean invalidPassword = !confirmPassword.equals(updatePassword);
-        boolean emptyPassword = updatePassword.isEmpty();
-        boolean invalidEmail = updateEmail.isEmpty() || !updateEmail.contains(".");
+        ArrayList<String> errors = new ArrayList<>();
 
-        if  (invalidEmail || invalidPassword){
-            response.sendRedirect("/info");
+        boolean inputHasErrors = false;
+
+
+        if (updateEmail.isEmpty()){
+            inputHasErrors = true;
+            String usernameEmpty = "Email cannot be blank";
+            errors.add(usernameEmpty);
+        } else if (!updateEmail.contains(".")){
+            inputHasErrors = true;
+            String invalidEmail = "Please enter a valid email";
+            errors.add(invalidEmail);
+        } else {
+            User user = DaoFactory.getUsersDao().findByEmail(updateEmail);
+            if (user != null) {
+                if (user.getId() == userID) {
+                    DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+                } else {
+                    inputHasErrors = true;
+                    String emailExists = "Email is already in use";
+                    errors.add(emailExists);
+                }
+            } else {
+                DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+            }
+
+        }
+
+//        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
+
+        if ((!updatePassword.equals(confirmPassword))){
+            inputHasErrors = true;
+            String passwordMismatch = "Password inputs must match";
+            errors.add(passwordMismatch);
+        } else if (!updatePassword.isEmpty()) {
+            DaoFactory.getUsersDao().updateUserPassword(updatePassword, userID);
+        }
+
+        if (inputHasErrors) {
+            request.setAttribute("errors", errors);
+//            response.sendRedirect("/register");
+            request.getRequestDispatcher("/WEB-INF/user/info.jsp").forward(request, response);
             return;
         }
 
-        if (!emptyPassword) {
-            DaoFactory.getUsersDao().updateUserPassword(updatePassword, userID);
-        }
-        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
         response.sendRedirect("/logout");
 
     }

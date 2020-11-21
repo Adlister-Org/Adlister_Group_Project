@@ -10,6 +10,13 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
     <h1>Please fill in your information.</h1>
+
+    <c:if test="${requestScope.errors != null}">
+        <c:forEach var="e" items="${errors}">
+            <h3>${e}</h3>
+        </c:forEach>
+    </c:if>
+
     <form action="/register" method="post">
         <div class="form-group">
             <label for="username">Username</label>
