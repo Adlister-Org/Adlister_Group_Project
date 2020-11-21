@@ -173,6 +173,7 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error inserting into new ads category.", e);
         }
     }
+
     @Override
     public List<Category> categoriesByAdId(long id) {
         PreparedStatement stmt = null;
