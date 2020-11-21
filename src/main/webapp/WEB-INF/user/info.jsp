@@ -18,6 +18,13 @@
 
 <div class="container">
     <div class="col-md-6">
+
+        <c:if test="${requestScope.errors != null}">
+            <c:forEach var="e" items="${errors}">
+                <h3>${e}</h3>
+            </c:forEach>
+        </c:if>
+
         <form method="post" action="/info">
 
             <label for="email">Email</label>
