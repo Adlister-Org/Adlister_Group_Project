@@ -108,7 +108,7 @@ public class MySQLAdsDao implements Ads {
     public void updateAd(String title, String description, long adId) {
         PreparedStatement stmt = null;
         try {
-            //stmt = connection.prepareStatement("UPDATE ads SET title = '" + title + "' , description = '" + description + "' WHERE id = " + adId);
+
             stmt = connection.prepareStatement("UPDATE ads SET title = ?, description = ? WHERE id = ?");
             stmt.setString(1, title);
             stmt.setString(2, description);
@@ -162,6 +162,17 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public void deleteAdsCat(long id){
+        try {
+            PreparedStatement stmtDeleteAdCat = connection.prepareStatement("DELETE FROM ads_categories WHERE ad_id = ?");
+            stmtDeleteAdCat.setLong(1, id);
+            stmtDeleteAdCat.execute();
+        }  catch (SQLException e) {
+            throw new RuntimeException("Error inserting into new ads category.", e);
+        }
+    }
+
+    @Override
     public void insertAdsCat(long id, long val_id){
         try {
             String insertQuery = "INSERT INTO ads_categories(ad_id, category_id) VALUES (?, ?)";
@@ -191,5 +202,7 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving ads by search criteria.", e);
         }
     }
+
+
 }
 

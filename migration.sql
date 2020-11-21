@@ -42,6 +42,8 @@ CREATE  TABLE ads_categories (
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
+DELETE FROM ads_categories WHERE ad_id = 16;
+
 INSERT INTO categories(title) VALUES ('Cleaning');
 INSERT INTO categories(title) VALUES ('Plumbing');
 INSERT INTO categories(title) VALUES ('Handyman');

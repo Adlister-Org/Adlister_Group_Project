@@ -26,4 +26,6 @@ public interface Ads {
     void insertAdsCat(long id, long val_id);
 
     List<Category> categoriesByAdId(long id);
+
+    void deleteAdsCat(long id);
 }

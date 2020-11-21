@@ -48,6 +48,7 @@ public class UpdateServlet extends HttpServlet {
             aList.add(Long.parseLong(category_id));
         }
 
+        DaoFactory.getAdsDao().deleteAdsCat(adId);
 
         for(long val_id : aList) {
             DaoFactory.getAdsDao().insertAdsCat(adId, val_id);
