@@ -41,18 +41,39 @@ public class UpdateServlet extends HttpServlet {
             return;
         }
 
-        String[] catSelected = request.getParameterValues("cat-title");
-        List<String> list = Arrays.asList(catSelected);
-        List<Long> aList = new ArrayList<>();
-        for (String category_id : list) {
-            aList.add(Long.parseLong(category_id));
+        if (request.getParameterValues("cat-title") == null){
+            String[] catSelected = new String[1];
+            catSelected[0] = "5";
+            List<String> list = Arrays.asList(catSelected);
+
+            List<Long> aList = new ArrayList<>();
+            for (String category_id : list) {
+                aList.add(Long.parseLong(category_id));
+            }
+
+            DaoFactory.getAdsDao().deleteAdsCat(adId);
+
+            for(long val_id : aList) {
+                DaoFactory.getAdsDao().insertAdsCat(adId, val_id);
+            }
+
+        } else {
+            String[] catSelected = request.getParameterValues("cat-title");
+            List<String> list = Arrays.asList(catSelected);
+
+            List<Long> aList = new ArrayList<>();
+            for (String category_id : list) {
+                aList.add(Long.parseLong(category_id));
+            }
+
+            DaoFactory.getAdsDao().deleteAdsCat(adId);
+
+            for(long val_id : aList) {
+                DaoFactory.getAdsDao().insertAdsCat(adId, val_id);
+            }
         }
 
-        DaoFactory.getAdsDao().deleteAdsCat(adId);
 
-        for(long val_id : aList) {
-            DaoFactory.getAdsDao().insertAdsCat(adId, val_id);
-        }
 
         DaoFactory.getAdsDao().updateAd(title, description, adId);
         response.sendRedirect("ad?id=" + adId);
