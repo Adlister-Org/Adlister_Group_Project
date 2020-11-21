@@ -24,7 +24,10 @@
             <input id="title" name="title" value="<c:out value="${ad.title}"/>">
             <label for="description">Description</label>
             <textarea id="description" name="description"><c:out value="${ad.description}"/></textarea>
-
+            <c:forEach var="category" items="${categories}">
+                <label for="cat-title">${category.title}</label>
+                <input id="cat-title"  name="cat-title" type="checkbox" value="${category.id}"/>
+            </c:forEach>
             <button type="submit" value="${ad.id}" name="adId">Submit</button>
 
         </form>

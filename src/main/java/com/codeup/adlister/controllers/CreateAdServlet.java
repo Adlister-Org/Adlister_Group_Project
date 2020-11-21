@@ -18,7 +18,6 @@ import java.util.List;
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/profile");
             return;
@@ -29,15 +28,8 @@ public class CreateAdServlet extends HttpServlet {
             .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, NullPointerException {
         User sessionUser = (User) request.getSession().getAttribute("user");
-
-        String[] catSelected = request.getParameterValues("cat-title");
-        List<String> list = Arrays.asList(catSelected);
-        List<Long> aList = new ArrayList<>();
-        for (String category_id : list) {
-            aList.add(Long.parseLong(category_id));
-        }
 
         Ad ad = new Ad(
             sessionUser.getId(),
@@ -47,9 +39,35 @@ public class CreateAdServlet extends HttpServlet {
 
 
         long id = DaoFactory.getAdsDao().insert(ad);
-        for(long val_id : aList) {
-            DaoFactory.getAdsDao().insertAdsCat(id, val_id);
+
+        if (request.getParameterValues("cat-title") == null){
+            String[] catSelected = new String[1];
+            catSelected[0] = "5";
+            List<String> list = Arrays.asList(catSelected);
+
+            List<Long> aList = new ArrayList<>();
+            for (String category_id : list) {
+                aList.add(Long.parseLong(category_id));
+            }
+
+            for(long val_id : aList) {
+                DaoFactory.getAdsDao().insertAdsCat(id, val_id);
+            }
+
+        } else {
+            String[] catSelected = request.getParameterValues("cat-title");
+            List<String> list = Arrays.asList(catSelected);
+
+            List<Long> aList = new ArrayList<>();
+            for (String category_id : list) {
+                aList.add(Long.parseLong(category_id));
+            }
+
+            for(long val_id : aList) {
+                DaoFactory.getAdsDao().insertAdsCat(id, val_id);
+            }
         }
+
         response.sendRedirect("/ads");
     }
 }
