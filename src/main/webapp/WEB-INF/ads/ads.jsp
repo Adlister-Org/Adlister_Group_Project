@@ -22,7 +22,14 @@
         <label for="filter">Filter by Category: </label>
         <select name="filter" id="filter">
             <c:forEach var="cat" items="${categories}">
-                <option value="${cat.id}">${cat.title}</option>
+                <c:choose>
+                    <c:when test="${cat.id.toString() == stickyFilter}">
+                        <option value="${cat.id}" selected>${cat.title}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="${cat.id}">${cat.title}</option>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>
         </select>
 

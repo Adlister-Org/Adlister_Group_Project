@@ -17,6 +17,7 @@ public class AdsIndexServlet extends HttpServlet {
         String search = request.getParameter("search");
         String filter = request.getParameter("filter");
         request.setAttribute("stickySearch", search);
+        request.setAttribute("stickyFilter", filter);
         if (search == null && filter == null) {
             request.setAttribute("ads", DaoFactory.getAdsDao().all());
         } else if(filter == null){
