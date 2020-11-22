@@ -10,36 +10,32 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing ${ad.title}" />
+        <jsp:param name="title" value="Viewing ${ad.title}"/>
     </jsp:include>
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
-
-<div class="container">
-        <div class="col-md-6">
-            <h1><c:out value="${ad.title}"/></h1>
-            <p><c:out value="${ad.description}"/></p>
+<div class="card mx-5">
+    <div class="card-header">
+        <h1><c:out value="${ad.title}"/></h1>
+    </div>
+    <div class="card-body">
+        <h3 class="card-text"><c:out value="${ad.description}"/></h3>
+        <br>
+        <div>
+            <h5>Categories: </h5>
+            <ul>
+                <c:forEach var="cat" items="${categories}">
+                    <li>${cat.title}</li>
+                </c:forEach>
+            </ul>
         </div>
-</div>
-<div class="container">
-    <div class="col-md-6">
-        <p>Categories: </p>
-        <ul>
-            <c:forEach var="cat" items="${categories}">
-                <li>
-                    ${cat.title}
-                </li>
-            </c:forEach>
-        </ul>
+    </div>
+    <div class="card-footer">
+        Created by:
+        <a href="#"><c:out value="${userAd.username}"/></a>
     </div>
 </div>
-
-<div class="container">
-    <p>Created By: <c:out value="${userAd.username}"/></p>
-</div>
-
-
 </body>
 </html>
 

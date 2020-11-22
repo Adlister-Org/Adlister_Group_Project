@@ -30,4 +30,6 @@ public interface Ads {
     void deleteAdsCat(long id);
 
     List<Category> categoryByName(String name);
+
+    List<Ad> adsByCategoryId(long cat_id);
 }
