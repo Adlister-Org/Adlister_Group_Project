@@ -15,10 +15,7 @@
     <br>
     <br>
 
-    <%--TODO: add method to MYSQLDAO that returns a list of ads by a specfic user id --%>
-
     <c:forEach var="ad" items="${ads}">
-        <c:if test="${sessionScope.user.id.equals(ad.userId)}">
             <div class="col-md-6">
                 <a href="<c:url value="/ad">
             <c:param name="id" value="${ad.id}"/>
@@ -33,7 +30,6 @@
                    <button type="submit" value="${ad.id}" name="adId">Delete</button>
                 </form>
             </div>
-        </c:if>
     </c:forEach>
 
 </div>

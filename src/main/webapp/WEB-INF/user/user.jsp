@@ -18,27 +18,18 @@
 
 <div class="container">
     <h1><c:out value="Viewing All Ads by ${userName}!"/></h1>
-
-<c:forEach var="ad" items="${ads}">
-    <div class="card mx-5">
-        <div class="card-header">
-            <h1><c:out value="${ad.title}"/></h1>
-        </div>
-        <div class="card-body">
-            <h3 class="card-text"><c:out value="${ad.description}"/></h3>
-            <br>
-            <div>
-                <h5>Categories: </h5>
-                <ul>
-                    <c:forEach var="cat" items="${categories}">
-                        <li>${cat.title}</li>
-                    </c:forEach>
-                </ul>
+        <c:forEach var="ad" items="${ads}">
+            <div class="card mx-5">
+                <div class="card-header">
+                    <h3><c:out value="${ad.title}"/></h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><c:out value="${ad.description}"/></p>
+                </div>
             </div>
-        </div>
+            <br>
+        </c:forEach>
     </div>
-</c:forEach>
-
 </div>
 </body>
 </html>
