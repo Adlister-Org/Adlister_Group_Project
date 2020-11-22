@@ -33,7 +33,10 @@
     </div>
     <div class="card-footer">
         Created by:
-        <a href="#"><c:out value="${userAd.username}"/></a>
+        <a href="<c:url value="/user" >
+                <c:param name="id" value="${userAd.id}"/>
+                <c:param name="userName" value="${userAd.username}"/>
+                </c:url>"><c:out value="${userAd.username}"/></a>
     </div>
 </div>
 </body>

@@ -86,8 +86,16 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public  List<Ad> getByUserId(int id){
-        return null;
+    public  List<Ad> getByUserId(long id){
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = ?");
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads with user_id "+id, e);
+        }
     }
 
     // SEARCH AD
