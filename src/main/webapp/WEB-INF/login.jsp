@@ -11,6 +11,15 @@
 
 <div class="container">
     <h1>Please Log In</h1>
+
+<%--    <c:if test="${requestScope.errors != null}">--%>
+        <c:forEach var="e" items="${errors}">
+            <div class="alert alert-danger" role="alert">
+                    ${e}
+            </div>
+        </c:forEach>
+<%--    </c:if>--%>
+
     <form action="/login" method="POST">
         <div class="form-group">
             <label for="username">Username</label>

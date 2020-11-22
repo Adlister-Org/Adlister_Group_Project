@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
+            request.getSession().setAttribute("url", request.getRequestURI());
             response.sendRedirect("/login");
             return;
         }
@@ -31,7 +32,6 @@ public class InfoServlet extends HttpServlet {
 
 
         ArrayList<String> errors = new ArrayList<>();
-
         boolean inputHasErrors = false;
 
 

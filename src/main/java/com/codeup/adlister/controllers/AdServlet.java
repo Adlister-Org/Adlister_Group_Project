@@ -13,6 +13,8 @@ import java.io.IOException;
 public class AdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long id = Integer.parseInt(request.getParameter("id"));
+        request.getSession().setAttribute("url", request.getRequestURI() + "?id=" + id);
+
         request.setAttribute("ad", DaoFactory.getAdsDao().oneById(id));
         request.setAttribute("categories", DaoFactory.getAdsDao().categoriesByAdId(id));
         request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);

@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getSession().getAttribute("user") != null) {
+//            String url = request.getRequestURL().toString();
+//            response.sendRedirect(url);
             response.sendRedirect("/profile");
             return;
         }
@@ -27,7 +30,11 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
+        ArrayList<String> errors = new ArrayList<>();
+
         if (user == null) {
+            errors.add("Username does not exist");
+            request.setAttribute("errors", errors);
             response.sendRedirect("/login");
             return;
         }
@@ -36,8 +43,15 @@ public class LoginServlet extends HttpServlet {
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/profile");
+            if(request.getSession().getAttribute("url") == null) {
+                response.sendRedirect("/ads");
+            } else {
+                String uri = request.getSession().getAttribute("url").toString();
+                response.sendRedirect(uri);
+            }
         } else {
+            errors.add("Incorrect password");
+            request.setAttribute("errors", errors);
             response.sendRedirect("/login");
         }
     }

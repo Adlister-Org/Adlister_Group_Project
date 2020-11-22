@@ -50,4 +50,8 @@ INSERT INTO categories(title) VALUES ('Plumbing');
 INSERT INTO categories(title) VALUES ('Handyman');
 INSERT INTO categories(title) VALUES ('IT');
 
+select * from ads join ads_categories ac on ads.id = ac.ad_id;
 
+select * from users;
+
+select * from ads;
