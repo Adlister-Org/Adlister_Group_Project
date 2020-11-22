@@ -25,20 +25,25 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
         ArrayList<String> errors = new ArrayList<>();
-
-        if (user == null) {
+        // USERNAME
+        if (username.isEmpty()) {
+            errors.add("Username cannot be blank.");
+            request.setAttribute("errors", errors);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            return;
+        } else if (user == null) {
             errors.add("Username does not exist");
             request.setAttribute("errors", errors);
-            response.sendRedirect("/login");
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             return;
         }
-
+        // PASSWORD
         boolean validAttempt = BCrypt.checkpw(password, user.getPassword());
 
         if (validAttempt) {
@@ -52,7 +57,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             errors.add("Incorrect password");
             request.setAttribute("errors", errors);
-            response.sendRedirect("/login");
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
     }
 
