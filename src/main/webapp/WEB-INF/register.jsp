@@ -13,7 +13,9 @@
 
     <c:if test="${requestScope.errors != null}">
         <c:forEach var="e" items="${errors}">
-            <h3>${e}</h3>
+            <div class="alert alert-danger" role="alert">
+                    ${e}
+            </div>
         </c:forEach>
     </c:if>
 

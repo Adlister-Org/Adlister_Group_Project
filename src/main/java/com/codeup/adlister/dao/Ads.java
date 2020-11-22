@@ -21,11 +21,13 @@ public interface Ads {
 
     void deleteAd(long id);
 
-    public List<Category> allCategories();
+    List<Category> allCategories();
 
     void insertAdsCat(long id, long val_id);
 
     List<Category> categoriesByAdId(long id);
 
     void deleteAdsCat(long id);
+
+    List<Category> categoryByName(String name);
 }

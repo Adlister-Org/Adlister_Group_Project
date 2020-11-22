@@ -11,6 +11,9 @@
 
 <div class="container">
     <h1><c:out value="Welcome, ${sessionScope.user.username}!"/></h1>
+    <a href="/info">Account Settings</a>
+    <br>
+    <br>
 
     <%--TODO: add method to MYSQLDAO that returns a list of ads by a specfic user id --%>
 
@@ -36,7 +39,3 @@
 </div>
 </body>
 </html>
-<%--<button type="button" name="update" action="update"><a href="<c:url value="/update">--%>
-<%--                    <c:param name="id" value="${ad.id}"/>--%>
-<%--                        </c:url>"> Update</a></button>--%>
-<%--<button type="button" name="delete" action="delete"><a href="/delete">Delete</a></button>--%>

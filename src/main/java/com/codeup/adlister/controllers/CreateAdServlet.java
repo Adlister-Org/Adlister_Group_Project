@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -41,18 +42,12 @@ public class CreateAdServlet extends HttpServlet {
         long id = DaoFactory.getAdsDao().insert(ad);
 
         if (request.getParameterValues("cat-title") == null){
-            String[] catSelected = new String[1];
-            catSelected[0] = "5";
-            List<String> list = Arrays.asList(catSelected);
-
-            List<Long> aList = new ArrayList<>();
-            for (String category_id : list) {
-                aList.add(Long.parseLong(category_id));
+            List<Category> other = DaoFactory.getAdsDao().categoryByName("Other");
+            long otherId = 0;
+            for (Category cat : other) {
+                otherId = cat.getId();
             }
-
-            for(long val_id : aList) {
-                DaoFactory.getAdsDao().insertAdsCat(id, val_id);
-            }
+            DaoFactory.getAdsDao().insertAdsCat(id, otherId);
 
         } else {
             String[] catSelected = request.getParameterValues("cat-title");

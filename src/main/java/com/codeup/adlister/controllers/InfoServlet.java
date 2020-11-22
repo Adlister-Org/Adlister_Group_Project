@@ -14,6 +14,10 @@ import java.util.ArrayList;
 @WebServlet(name = "InfoServlet", urlPatterns = "/info")
 public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
         request.getRequestDispatcher("/WEB-INF/user/info.jsp").forward(request, response);
 
     }
@@ -55,8 +59,6 @@ public class InfoServlet extends HttpServlet {
 
         }
 
-//        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
-
         if ((!updatePassword.equals(confirmPassword))){
             inputHasErrors = true;
             String passwordMismatch = "Password inputs must match";
@@ -76,7 +78,6 @@ public class InfoServlet extends HttpServlet {
 
     }
 
-//    $2a$10$veBYkS3kkyXAmsg3GjSjzuRdfLUZdaeA6so111lBcIYBP.KwrCp3W
 
 
 

@@ -203,6 +203,19 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public List<Category> categoryByName(String name) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM categories WHERE title = ?");
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            return createCategoriesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
 
 }
 

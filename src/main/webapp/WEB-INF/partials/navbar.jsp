@@ -63,7 +63,10 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/info"><c:out value="Welcome back, ${sessionScope.user.username}"/></a>
+                    <a href="/profile"><c:out value="Welcome back, ${sessionScope.user.username}"/></a>
+                </li>
+                <li>
+                    <a href="/ads/create">Create Ad</a>
                 </li>
                 <li>
                     <a href="/logout">Logout</a>

@@ -3,6 +3,7 @@ package com.codeup.adlister.models;
 public class Category {
     private long id;
     private String title;
+    private int checked;
 
 
     public Category(long id, String title){
@@ -24,5 +25,13 @@ public class Category {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getChecked() {
+        return this.checked;
+    }
+
+    public void setChecked(int num) {
+        this.checked = num;
     }
 }

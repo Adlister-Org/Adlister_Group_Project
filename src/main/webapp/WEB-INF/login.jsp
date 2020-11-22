@@ -22,6 +22,14 @@
         </div>
         <input type="submit" class="btn btn-primary btn-block" value="Log In">
     </form>
+    <div class="text-center">
+        <h3>or</h3>
+    </div>
+    <div>
+        <form action="/register">
+            <button type="submit" class="btn btn-primary btn-block" value="Register">Register</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
