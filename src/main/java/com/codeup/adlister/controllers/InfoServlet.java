@@ -14,6 +14,10 @@ import java.util.ArrayList;
 @WebServlet(name = "InfoServlet", urlPatterns = "/info")
 public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
         request.getRequestDispatcher("/WEB-INF/user/info.jsp").forward(request, response);
 
     }

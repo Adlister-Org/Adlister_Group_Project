@@ -10,7 +10,7 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The Ads"/>
+        <jsp:param name="title" value="Account Settings"/>
     </jsp:include>
 </head>
 <body>
@@ -20,9 +20,11 @@
     <div class="col-md-6">
 
         <c:if test="${requestScope.errors != null}">
-            <c:forEach var="e" items="${errors}">
-                <h3>${e}</h3>
-            </c:forEach>
+                <c:forEach var="e" items="${errors}">
+                    <div class="alert alert-danger" role="alert">
+                            ${e}
+                    </div>
+                </c:forEach>
         </c:if>
 
         <form method="post" action="/info">
