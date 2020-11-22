@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
             if(request.getSession().getAttribute("url") == null) {
-                response.sendRedirect("/ads");
+                response.sendRedirect("/");
             } else {
                 String uri = request.getSession().getAttribute("url").toString();
                 response.sendRedirect(uri);

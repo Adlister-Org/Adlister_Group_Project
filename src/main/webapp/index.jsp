@@ -13,7 +13,7 @@
              <h1 class="cover-header">The Odd job for you!</h1>
              <p class="lead">Find an odd job!</p>
              <p class="lead">
-                <button class="btn btn-lg btn-secondary">Job Lister</button>
+                <button class="btn btn-lg btn-secondary"><a href="/ads" style="color: white">View Jobs</a></button>
              </p>
              <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="4000">
                  <div class="carousel-inner">
