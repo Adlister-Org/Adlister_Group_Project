@@ -222,7 +222,7 @@ public class MySQLAdsDao implements Ads {
             stmt = connection.prepareStatement("SELECT * " +
                     "FROM ads " +
                     "JOIN ads_categories ON ads.id = ads_categories.ad_id " +
-                    "JOIN categories ON ads_categories.category_id = categories.id" +
+                    "JOIN categories ON ads_categories.category_id = categories.id " +
                     "WHERE categories.id = ?"  );
             stmt.setLong(1, cat_id);
             ResultSet rs = stmt.executeQuery();
