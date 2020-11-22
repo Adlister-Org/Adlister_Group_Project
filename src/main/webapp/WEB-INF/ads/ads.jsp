@@ -14,7 +14,7 @@
     <h1>Here Are all the ads!</h1>
     <form action="/ads" method="get">
         <label for="search">Search Ads: </label>
-        <input type="text" name="search" id="search">
+        <input type="text" name="search" id="search" value="${stickySearch}">
         <button type="submit">Search</button>
     </form>
 

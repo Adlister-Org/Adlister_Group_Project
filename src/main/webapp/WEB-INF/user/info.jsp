@@ -30,7 +30,7 @@
         <form method="post" action="/info">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<c:out value="${sessionScope.user.email}"/>" class="form-control">
+                <input type="email" id="email" name="email" value="${sessionScope.user.email}" class="form-control">
             </div>
             <div class="form-group">
                 <label for="password">New Password</label>

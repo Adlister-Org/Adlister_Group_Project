@@ -10,35 +10,57 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getSession().getAttribute("user") != null) {
+//            String url = request.getRequestURL().toString();
+//            response.sendRedirect(url);
             response.sendRedirect("/profile");
             return;
         }
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
+        request.setAttribute("enteredUser", username);
+
         String password = request.getParameter("password");
+        request.setAttribute("enteredPassword", password);
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
-        if (user == null) {
-            response.sendRedirect("/login");
+        ArrayList<String> errors = new ArrayList<>();
+        // USERNAME
+        if (username.isEmpty()) {
+            errors.add("Username cannot be blank.");
+            request.setAttribute("errors", errors);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            return;
+        } else if (user == null) {
+            errors.add("Username does not exist");
+            request.setAttribute("errors", errors);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             return;
         }
-
+        // PASSWORD
         boolean validAttempt = BCrypt.checkpw(password, user.getPassword());
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/profile");
+            if(request.getSession().getAttribute("url") == null) {
+                response.sendRedirect("/ads");
+            } else {
+                String uri = request.getSession().getAttribute("url").toString();
+                response.sendRedirect(uri);
+            }
         } else {
-            response.sendRedirect("/login");
+            errors.add("Incorrect password");
+            request.setAttribute("errors", errors);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
     }
 

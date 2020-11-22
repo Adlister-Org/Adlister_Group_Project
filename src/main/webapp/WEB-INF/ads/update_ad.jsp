@@ -10,7 +10,7 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Update Ad"/>
+        <jsp:param name="title" value="Updating ${ad.title}"/>
     </jsp:include>
 </head>
 <body>

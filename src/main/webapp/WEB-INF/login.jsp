@@ -11,10 +11,17 @@
 
 <div class="container">
     <h1>Please Log In</h1>
+
+    <c:forEach var="e" items="${errors}">
+        <div class="alert alert-danger" role="alert">
+                ${e}
+        </div>
+    </c:forEach>
+
     <form action="/login" method="POST">
         <div class="form-group">
             <label for="username">Username</label>
-            <input id="username" name="username" class="form-control" type="text">
+            <input id="username" name="username" class="form-control" value="${requestScope.enteredUser}" type="text">
         </div>
         <div class="form-group">
             <label for="password">Password</label>

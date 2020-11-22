@@ -24,6 +24,7 @@
 </div>
 <div class="container">
     <div class="col-md-6">
+        <p>Categories: </p>
         <ul>
             <c:forEach var="cat" items="${categories}">
                 <li>
@@ -33,6 +34,11 @@
         </ul>
     </div>
 </div>
+
+<div class="container">
+    <p>Created By: <c:out value="${userAd.username}"/></p>
+</div>
+
 
 </body>
 </html>

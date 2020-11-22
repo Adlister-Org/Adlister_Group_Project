@@ -20,7 +20,8 @@ import java.util.List;
 public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/profile");
+            request.getSession().setAttribute("url", request.getRequestURI());
+            response.sendRedirect("/login");
             return;
         }
         request.setAttribute("categories", DaoFactory.getAdsDao().allCategories());
