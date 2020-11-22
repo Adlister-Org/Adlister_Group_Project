@@ -20,9 +20,11 @@ public class AdsIndexServlet extends HttpServlet {
         request.setAttribute("stickyFilter", filter);
         if (search == null && filter == null) {
             request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        } else if(filter == null){
+        } else if (filter.equals("all")) {
+            request.setAttribute("ads", DaoFactory.getAdsDao().all());
+        } else if(search != null){
             request.setAttribute("ads", DaoFactory.getAdsDao().all(search));
-        } else if(search == null){
+        } else {
             request.setAttribute("ads", DaoFactory.getAdsDao().adsByCategoryId(Long.parseLong(filter)));
         }
 
@@ -30,8 +32,4 @@ public class AdsIndexServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/ads/ads.jsp").forward(request, response);
 
     }
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//    }
-//
 }
