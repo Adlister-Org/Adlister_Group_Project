@@ -29,18 +29,15 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/ads">Adlister</a>
                     <a class="navbar-brand" href="/ads/create">Create Ad</a>
+
+
                 </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <p class="navbar-brand">Welcome, <c:out value="${sessionScope.user.username}"/></p>
-                    </li>
-                    <li>
-                        <a href="/profile">Profile</a>
-                    </li>
-                    <li>
-                        <a href="/logout">Logout</a>
-                    </li>
-                </ul>
+                <div class=" navbar-right">
+                    <p class="navbar-brand">Welcome, <c:out value="${sessionScope.user.username}"/></p>
+                    <a class="navbar-brand" href="/profile">Profile</a>
+                    <a class="navbar-brand" href="/logout">Logout</a>
+
+                </div>
             </div>
         </c:otherwise>
     </c:choose>
