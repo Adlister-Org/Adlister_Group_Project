@@ -28,13 +28,14 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/ads">Adlister</a>
+                    <a class="navbar-brand" href="/ads/create">Create Ad</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <p><c:out value="Welcome, ${sessionScope.user}"/></p>
+                        <p class="navbar-brand">Welcome, <c:out value="${sessionScope.user.username}"/></p>
                     </li>
                     <li>
-                        <a href="/profile"><c:out value="Profile"/></a>
+                        <a href="/profile">Profile</a>
                     </li>
                     <li>
                         <a href="/logout">Logout</a>
