@@ -59,8 +59,6 @@ public class InfoServlet extends HttpServlet {
 
         }
 
-//        DaoFactory.getUsersDao().updateUserEmail(updateEmail, userID);
-
         if ((!updatePassword.equals(confirmPassword))){
             inputHasErrors = true;
             String passwordMismatch = "Password inputs must match";
@@ -80,7 +78,6 @@ public class InfoServlet extends HttpServlet {
 
     }
 
-//    $2a$10$veBYkS3kkyXAmsg3GjSjzuRdfLUZdaeA6so111lBcIYBP.KwrCp3W
 
 
 

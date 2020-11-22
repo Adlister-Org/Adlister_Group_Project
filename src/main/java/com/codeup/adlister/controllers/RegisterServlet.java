@@ -75,7 +75,6 @@ public class RegisterServlet extends HttpServlet {
 
         if (inputHasErrors) {
             request.setAttribute("errors", errors);
-//            response.sendRedirect("/register");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
