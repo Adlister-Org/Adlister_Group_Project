@@ -27,7 +27,10 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
+        request.setAttribute("enteredUser", username);
+
         String password = request.getParameter("password");
+        request.setAttribute("enteredPassword", password);
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
         ArrayList<String> errors = new ArrayList<>();
