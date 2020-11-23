@@ -21,6 +21,7 @@
     </div>
     <div class="card-body">
         <h3 class="card-text"><c:out value="${ad.description}"/></h3>
+        <img src="<c:out value="${ad.image}"></c:out>">
         <br>
         <div>
             <h5>Categories: </h5>

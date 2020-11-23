@@ -42,7 +42,7 @@
     <div class="row justify-content-center">
         <c:forEach var="ad" items="${ads}">
             <div class="card col-3 m-1">
-                <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/b77fe464cfc445da9003a5383a3e1acf.jpg" class="card-img-top" alt="...">
+                <img src="${ad.image}" class="card-img-top" alt="Joblister">
                 <div class="card-body">
                     <h5 class="card-title"><c:out value = "${ad.title}"/></h5>
                     <p class="card-text" ><c:out value="${ad.description}"/></p>

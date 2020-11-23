@@ -8,25 +8,29 @@ public class Ad {
     private String title;
     private String description;
     private List<String> categories;
+    private String image;
 
-    public Ad(long userId, String title, String description, List<String> categories) {
+    public Ad(long userId, String title, String description, List<String> categories, String image) {
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.categories = categories;
+        this.image = image;
     }
 
-    public Ad(long id, long userId, String title, String description) {
+    public Ad(long id, long userId, String title, String description, String image) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.image = image;
     }
     // CreateAdServlet
-    public Ad(long userId, String title, String description) {
+    public Ad(long userId, String title, String description, String image) {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.image = image;
     }
 
     public long getId() {
@@ -70,4 +74,7 @@ public class Ad {
     }
 
 
+    public String getImage() {
+        return this.image;
+    }
 }
