@@ -30,12 +30,47 @@ public class CreateAdServlet extends HttpServlet {
                 .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, NullPointerException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, NullPointerException, ServletException {
         User sessionUser = (User) request.getSession().getAttribute("user");
 
         String imgCheck = request.getParameter("imgUrl");
         if (imgCheck.isEmpty()) {
             imgCheck = "https://i.ibb.co/XjBKjvF/ezgif-com-gif-maker.gif";
+        }
+
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+
+        boolean inputHasErrors = false;
+        ArrayList<String> errors = new ArrayList<>();
+
+        if (title.isEmpty()) {
+            inputHasErrors = true;
+            errors.add("Title cannot be blank");
+        }
+
+        if (description.isEmpty()) {
+            inputHasErrors = true;
+            errors.add("Description cannot be blank");
+        }
+
+        if (description.length() > 255) {
+            inputHasErrors = true;
+            errors.add("Description too long. Exceeded 255 characters");
+        }
+
+        if (title.length() > 50) {
+            inputHasErrors = true;
+            errors.add("Title too long. Exceeded 50 characters");
+        }
+
+        if (inputHasErrors) {
+            request.setAttribute("errors", errors);
+            request.setAttribute("title", title);
+            request.setAttribute("description", description);
+            request.setAttribute("categories", DaoFactory.getAdsDao().allCategories());
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+            return;
         }
 
         Ad ad = new Ad(
