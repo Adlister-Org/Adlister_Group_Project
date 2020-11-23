@@ -18,12 +18,11 @@ CREATE TABLE ads (
     user_id INT UNSIGNED NOT NULL,
     title VARCHAR(240) NOT NULL,
     description TEXT NOT NULL,
+    img_url TEXT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
 );
-
-DROP TABLE IF EXISTS categories;
 
 
 CREATE TABLE categories (
@@ -50,8 +49,3 @@ INSERT INTO categories(title) VALUES ('Plumbing');
 INSERT INTO categories(title) VALUES ('Handyman');
 INSERT INTO categories(title) VALUES ('IT');
 
-select * from ads join ads_categories ac on ads.id = ac.ad_id;
-
-select * from users;
-
-select * from ads;

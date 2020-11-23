@@ -27,22 +27,27 @@ public class CreateAdServlet extends HttpServlet {
         request.setAttribute("categories", DaoFactory.getAdsDao().allCategories());
 
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+                .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, NullPointerException {
         User sessionUser = (User) request.getSession().getAttribute("user");
 
-        Ad ad = new Ad(
-            sessionUser.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
-        );
+        String imgCheck = request.getParameter("imgUrl");
+        if (imgCheck.isEmpty()) {
+            imgCheck = "https://i.ibb.co/XjBKjvF/ezgif-com-gif-maker.gif";
+        }
 
+        Ad ad = new Ad(
+                sessionUser.getId(),
+                request.getParameter("title"),
+                request.getParameter("description"),
+                imgCheck
+        );
 
         long id = DaoFactory.getAdsDao().insert(ad);
 
-        if (request.getParameterValues("cat-title") == null){
+        if (request.getParameterValues("cat-title") == null) {
             List<Category> other = DaoFactory.getAdsDao().categoryByName("Other");
             long otherId = 0;
             for (Category cat : other) {
@@ -59,7 +64,7 @@ public class CreateAdServlet extends HttpServlet {
                 aList.add(Long.parseLong(category_id));
             }
 
-            for(long val_id : aList) {
+            for (long val_id : aList) {
                 DaoFactory.getAdsDao().insertAdsCat(id, val_id);
             }
         }

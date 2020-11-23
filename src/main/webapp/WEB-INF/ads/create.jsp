@@ -19,6 +19,10 @@
             <label for="description">Description</label>
             <textarea id="description" name="description" class="form-control" type="text"></textarea>
         </div>
+        <div class="form-group">
+            <label for="imgUrl">Enter image url</label>
+            <input id="imgUrl" name="imgUrl" class="form-control" type="text">
+        </div>
         <c:forEach var="category" items="${categories}">
             <label for="cat-title">${category.title}</label>
             <input id="cat-title"  name="cat-title" type="checkbox" value="${category.id}"/>
