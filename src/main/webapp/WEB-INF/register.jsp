@@ -29,6 +29,10 @@
             <input id="email" name="email" class="form-control" value="${requestScope.enteredEmail}" type="text">
         </div>
         <div class="form-group">
+            <label for="image">Image(URL)</label>
+            <input id="image" name="image" class="form-control" value="${requestScope.image}" type="text">
+        </div>
+        <div class="form-group">
             <label for="password">Password</label>
             <input id="password" name="password" class="form-control" type="password">
         </div>

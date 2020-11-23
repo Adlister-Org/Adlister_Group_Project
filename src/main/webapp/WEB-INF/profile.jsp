@@ -12,6 +12,7 @@
 <div class="container">
     <h1><c:out value="Welcome, ${sessionScope.user.username}!"/></h1>
     <a href="/info">Account Settings</a>
+    <img src="<c:out value="${sessionScope.user.image}"></c:out>" alt="box">
     <br>
     <br>
 
