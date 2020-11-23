@@ -20,12 +20,13 @@ public class AdsIndexServlet extends HttpServlet {
         request.setAttribute("stickyFilter", filter);
         if (search == null && filter == null) {
             request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        } else if (filter.equals("all")) {
-            request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        } else if(search != null){
+        } else if (filter == null) {
             request.setAttribute("ads", DaoFactory.getAdsDao().all(search));
+        } else if(search == null && filter.equals("all")){
+            request.setAttribute("ads", DaoFactory.getAdsDao().all());
         } else {
             request.setAttribute("ads", DaoFactory.getAdsDao().adsByCategoryId(Long.parseLong(filter)));
+
         }
 
         request.setAttribute("categories", DaoFactory.getAdsDao().allCategories());
