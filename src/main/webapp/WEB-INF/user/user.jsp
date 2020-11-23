@@ -20,6 +20,9 @@
     <div class="text-center my-4">
         <h1><c:out value="Viewing All Ads by ${userName}!"/></h1>
     </div>
+    <div class="text-center" >
+        <img src="${user.image}" alt="Image unavailabe" style="max-width: 300px; max-height: 300px">
+    </div>
     <div class="row justify-content-center">
         <c:forEach var="ad" items="${ads}">
             <div class="card col-3 m-1 mx-auto p-0" style="border: 1px solid black">

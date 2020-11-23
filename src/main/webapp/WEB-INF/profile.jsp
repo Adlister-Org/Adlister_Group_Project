@@ -12,6 +12,9 @@
 <div class="container my-3">
     <h1>Welcome, <c:out value="${sessionScope.user.username}"/></h1>
     <br>
+    <img src="${sessionScope.user.image}" style="max-height: 300px; max-width: 300px">
+    <br>
+    <br>
     <a class="btn btn-dark" href="/info" role="button">Account Settings</a>
     <div class="row my-3">
     <c:forEach var="ad" items="${ads}">

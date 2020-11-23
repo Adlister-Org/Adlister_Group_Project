@@ -29,13 +29,9 @@
         </div>
         <input type="submit" class="btn btn-dark btn-block" value="Log In">
     </form>
+
     <div class="text-center">
-        <h3>or</h3>
-    </div>
-    <div>
-        <form action="/register">
-            <button type="submit" class="btn btn-dark btn-block" value="Register">Register</button>
-        </form>
+        <h5>Don't have an account? <span><a href="/register" type="submit" class="" value="Register">Register</a></span></h5>
     </div>
 </div>
 </body>
