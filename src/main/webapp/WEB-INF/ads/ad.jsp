@@ -21,7 +21,7 @@
     </div>
     <div class="card-body">
         <h3 class="card-text"><c:out value="${ad.description}"/></h3>
-        <img src="<c:out value="${ad.image}"></c:out>">
+        <img src="<c:out value="${ad.image}"></c:out>" alt="https://giantbomb1.cbsistatic.com/uploads/original/15/153607/3075875-mario.png" >
         <br>
         <div>
             <h5>Categories: </h5>

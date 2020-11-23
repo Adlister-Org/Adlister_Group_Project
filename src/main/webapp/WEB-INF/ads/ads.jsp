@@ -36,13 +36,13 @@
             </c:forEach>
         </select>
 
-        <button type="submit">Filter</button>
+        <button class="btn btn-primary btn-md my-2" type="submit">Filter</button>
     </form>
     </div>
     <div class="row justify-content-center">
         <c:forEach var="ad" items="${ads}">
             <div class="card col-3 m-1">
-                <img src="${ad.image}" class="card-img-top" alt="Joblister">
+                <img src="${ad.image}" class="card-img-top" >
                 <div class="card-body">
                     <h5 class="card-title"><c:out value = "${ad.title}"/></h5>
                     <p class="card-text" ><c:out value="${ad.description}"/></p>
