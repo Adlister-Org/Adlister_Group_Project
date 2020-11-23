@@ -3,6 +3,7 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Category;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,12 @@ public class userServlet extends HttpServlet {
             List<Ad> listToLoop =  (List<Ad>) DaoFactory.getAdsDao().getByUserId(Long.parseLong(userId));
 
             request.setAttribute("ads", listToLoop);
+            User user = (User) DaoFactory.getUsersDao().findByUsername(request.getParameter("userName"));
+            request.setAttribute("user", user);
+
             request.setAttribute("userName", request.getParameter("userName"));
             request.getRequestDispatcher("/WEB-INF/user/user.jsp").forward(request, response);
+
+
     }
 }
