@@ -17,7 +17,7 @@ public interface Ads {
 
     List<Ad> getByUserId(long id);
 
-    void updateAd(String title, String description, long adId);
+    void updateAd(String title, String description, long adId, String imgUrl);
 
     void deleteAd(long id);
 

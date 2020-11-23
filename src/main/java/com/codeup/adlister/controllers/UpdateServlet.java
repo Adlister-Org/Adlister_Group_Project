@@ -46,14 +46,46 @@ public class UpdateServlet extends HttpServlet {
 
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String imgUrl = request.getParameter("imgUrl");
 
-        boolean inputHasErrors = title.isEmpty()
-                || description.isEmpty()
-                || description.length() > 255
-                || title.length() > 50;
+        boolean inputHasErrors = false;
+        ArrayList<String> errors = new ArrayList<>();
+
+                if (title.isEmpty()) {
+                    inputHasErrors = true;
+                    errors.add("Title cannot be blank");
+                }
+
+                if (description.isEmpty()) {
+                    inputHasErrors = true;
+                    errors.add("Description cannot be blank");
+                }
+
+                if (description.length() > 255) {
+                    inputHasErrors = true;
+                    errors.add("Description too long. Exceeded 255 characters");
+                }
+
+                if (title.length() > 50) {
+                    inputHasErrors = true;
+                    errors.add("Title too long. Exceeded 50 characters");
+                }
+
+                if (imgUrl == null || imgUrl.isEmpty()) {
+                    inputHasErrors = true;
+                    errors.add("Image URL cannot be empty");
+                }
+
 
         if (inputHasErrors) {
-            response.sendRedirect("/profile");
+            request.setAttribute("errors", errors);
+            request.setAttribute("title", title);
+            request.setAttribute("description", description);
+            List<Category> categories = DaoFactory.getAdsDao().allCategories();
+            request.setAttribute("ad", DaoFactory.getAdsDao().oneById(adId));
+            request.setAttribute("categories", categories);
+            request.setAttribute("imgUrl", imgUrl);
+            request.getRequestDispatcher("/WEB-INF/ads/update_ad.jsp").forward(request, response);
             return;
         }
 
@@ -82,7 +114,7 @@ public class UpdateServlet extends HttpServlet {
             }
         }
 
-        DaoFactory.getAdsDao().updateAd(title, description, adId);
+        DaoFactory.getAdsDao().updateAd(title, description, adId, imgUrl);
         response.sendRedirect("ad?id=" + adId);
     }
 }
