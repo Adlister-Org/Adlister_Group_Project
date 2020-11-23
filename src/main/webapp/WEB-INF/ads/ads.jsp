@@ -13,14 +13,17 @@
 <div class="container">
     <div class="container-fluid text-center">
     <h1>Here Are all the jobs!</h1>
-    <form action="/ads" method="get" >
+    <form action="/ads" method="get">
+        <div class="form-group">
         <label for="search">Search Ads: </label>
-        <input type="text" name="search" id="search" value="${stickySearch}">
-        <button type="submit">Search</button>
+        <input class="form-control" type="text" name="search" id="search" value="${stickySearch}">
+        <button class="btn btn-primary btn-md my-2" type="submit">Search</button>
+        </div>
     </form>
     <form action="/ads" method="get" >
         <label for="filter">Filter by Category: </label>
         <select name="filter" id="filter">
+            <option value="all">All Categories</option>
             <c:forEach var="cat" items="${categories}">
                 <c:choose>
                     <c:when test="${cat.id.toString() == stickyFilter}">
@@ -33,7 +36,7 @@
             </c:forEach>
         </select>
 
-        <button type="submit">Search</button>
+        <button type="submit">Filter</button>
     </form>
     </div>
     <div class="row justify-content-center">
