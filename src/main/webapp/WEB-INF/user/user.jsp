@@ -13,21 +13,25 @@
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
 </head>
-<body>
+<body style="background-color: darkgrey">
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="container">
-    <h1><c:out value="Viewing All Ads by ${userName}!"/></h1>
+    <div class="text-center my-4">
+        <h1><c:out value="Viewing All Ads by ${userName}!"/></h1>
+    </div>
+    <div class="row justify-content-center">
         <c:forEach var="ad" items="${ads}">
-            <div class="card mx-5">
-                <div class="card-header">
-                    <h3><c:out value="${ad.title}"/></h3>
-                </div>
+            <div class="card col-3 m-1 mx-auto p-0" style="border: 1px solid black">
+                <img src="${ad.imgUrl}" class="" alt="image unavailable" style="width: 100%; height: 150px">
                 <div class="card-body">
-                    <p class="card-text"><c:out value="${ad.description}"/></p>
+                    <h5 class="card-title"><c:out value = "${ad.title}"/></h5>
+                    <p class="card-text" ><c:out value="${ad.description}"/></p>
+                    <a class="btn btn-dark" href="<c:url value="/ad" >
+                        <c:param name="id" value="${ad.id}"/>
+                        </c:url>">View</a>
                 </div>
             </div>
-            <br>
         </c:forEach>
     </div>
 </div>

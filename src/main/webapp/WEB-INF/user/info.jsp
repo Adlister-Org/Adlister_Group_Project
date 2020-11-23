@@ -13,7 +13,7 @@
         <jsp:param name="title" value="Account Settings"/>
     </jsp:include>
 </head>
-<body>
+<body style="background-color: darkgrey">
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="container">
@@ -28,7 +28,7 @@
         </c:if>
 
         <form method="post" action="/info">
-            <div class="form-group">
+            <div class="form-group mt-5">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="${sessionScope.user.email}" class="form-control">
             </div>
@@ -40,7 +40,7 @@
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password" placeholder="re-enter new password" class="form-control">
             </div>
-            <button type="submit" value="${sessionScope.user.id}" name="userId" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" value="${sessionScope.user.id}" name="userId" class="btn btn-dark btn-block">Submit</button>
         </form>
     </div>
 </div>

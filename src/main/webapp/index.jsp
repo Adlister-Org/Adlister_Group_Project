@@ -6,9 +6,9 @@
         <jsp:param name="title" value="Welcome to my site!"/>
     </jsp:include>
 </head>
-<body class="text-center">
+<body class="text-center" style="background-color: darkgrey">
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-    <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
          <main role="main" class="inner cover">
              <h1 class="cover-header">The Odd job for you!</h1>
              <p class="lead">Find an odd job!</p>

@@ -6,7 +6,7 @@
         <jsp:param name="title" value="Create a new Ad"/>
     </jsp:include>
 </head>
-<body>
+<body style="background-color: darkgrey">
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
     <h1>Create a new Ad</h1>
@@ -28,7 +28,7 @@
             <input id="cat-title"  name="cat-title" type="checkbox" value="${category.id}"/>
         </c:forEach>
 
-        <input type="submit" class="btn btn-block btn-primary">
+        <input type="submit" class="btn btn-block btn-dark">
 
     </form>
 </div>
